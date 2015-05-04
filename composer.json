@@ -1,0 +1,39 @@
+{
+	"name": "estvoyage/phpTour2015",
+	"type": "library",
+	"description": "Code used during talk at PHP Tour 2015",
+	"keywords": [ "East" ],
+	"homepage": "http://github.com/estvoyage/phpTour2015",
+	"license": "BSD-2-Clause",
+	"authors": [
+		{
+			"name": "Frédéric Hardy",
+			"email": "frederic.hardy@mageekbox.net",
+			"homepage": "http://blog.mageekbox.net"
+		}
+	],
+	"repositories": [
+		{
+			"url": "https://github.com/mageekguy/atoum.git",
+			"type": "git"
+		}
+	],
+	"require": {
+		"php": ">=5.5.0",
+		"estvoyage/value": "@dev",
+		"estvoyage/data": "@dev"
+	},
+	"require-dev": {
+		"mageekguy/atoum": "@dev"
+	},
+	"autoload": {
+		"psr-4": {
+			"estvoyage\\phpTour2015\\": "classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"estvoyage\\phpTour2015\\tests\\units\\": "tests/units"
+		}
+	}
+}

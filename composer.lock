@@ -1,0 +1,187 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "807d0e78429872e831fd48a502effd74",
+    "packages": [
+        {
+            "name": "estvoyage/data",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/estvoyage/data.git",
+                "reference": "f95ecfbc9a25f368eb15236c734034c63da9de80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/estvoyage/data/zipball/f95ecfbc9a25f368eb15236c734034c63da9de80",
+                "reference": "f95ecfbc9a25f368eb15236c734034c63da9de80",
+                "shasum": ""
+            },
+            "require": {
+                "estvoyage/value": "@dev",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mageekguy/atoum": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "estvoyage\\data\\": "classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Frédéric Hardy",
+                    "email": "frederic.hardy@mageekbox.net",
+                    "homepage": "http://blog.mageekbox.net"
+                }
+            ],
+            "description": "Interfaces and classes to manipulate data in an east-oriented manner",
+            "homepage": "http://github.com/estvoyage/data",
+            "keywords": [
+                "East",
+                "data"
+            ],
+            "time": "2015-04-03 19:07:15"
+        },
+        {
+            "name": "estvoyage/value",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/estvoyage/value.git",
+                "reference": "099017d1371797f3002cba69201d227b4694e5e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/estvoyage/value/zipball/099017d1371797f3002cba69201d227b4694e5e7",
+                "reference": "099017d1371797f3002cba69201d227b4694e5e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mageekguy/atoum": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "estvoyage\\value\\": "classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Frédéric Hardy",
+                    "email": "frederic.hardy@mageekbox.net",
+                    "homepage": "http://blog.mageekbox.net"
+                }
+            ],
+            "description": "A set of whole value to avoid using native PHP type, see http://c2.com/cgi/wiki?ValueObject for more information",
+            "homepage": "http://github.com/estvoyage/value",
+            "keywords": [
+                "East",
+                "Value Object",
+                "Whole value",
+                "value"
+            ],
+            "time": "2015-04-06 18:42:06"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "mageekguy/atoum",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageekguy/atoum.git",
+                "reference": "41d2d36e19ce515a91a24ee7ad9350d1a8ebae7b"
+            },
+            "require": {
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-session": "*",
+                "ext-tokenizer": "*",
+                "ext-xml": "*",
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "Provides support for UTF-8 strings"
+            },
+            "bin": [
+                "bin/atoum"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "classes/"
+                ]
+            },
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Frédéric Hardy",
+                    "email": "frederic.hardy@atoum.org",
+                    "homepage": "http://blog.mageekbox.net"
+                },
+                {
+                    "name": "François Dussert",
+                    "email": "francois.dussert@atoum.org"
+                },
+                {
+                    "name": "Gérald Croes",
+                    "email": "gerald.croes@atoum.org"
+                },
+                {
+                    "name": "Julien Bianchi",
+                    "email": "julien.bianchi@atoum.org"
+                },
+                {
+                    "name": "Ludovic Fleury",
+                    "email": "ludovic.fleury@atoum.org"
+                }
+            ],
+            "description": "The root and a fork of the simple modern and intuitive unit testing framework for PHP 5.3+",
+            "homepage": "http://www.atoum.org",
+            "keywords": [
+                "TDD",
+                "atoum",
+                "test",
+                "unit testing"
+            ],
+            "time": "2015-03-14 20:27:02"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "estvoyage/value": 20,
+        "estvoyage/data": 20,
+        "mageekguy/atoum": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.5.0"
+    },
+    "platform-dev": []
+}
