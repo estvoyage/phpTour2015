@@ -6,8 +6,8 @@ require __DIR__ . '/../../runner.php';
 
 use
 	estvoyage\phpTour2015\tests\units,
+	estvoyage\phpTour2015\france,
 	estvoyage\phpTour2015\alcohol,
-	estvoyage\phpTour2015\barman\client,
 	estvoyage\data,
 	mock\estvoyage\data as mockOfData,
 	mock\estvoyage\phpTour2015 as mockOfPhpTour2015
@@ -18,26 +18,26 @@ class barman extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\phpTour2015\barman')
+			->implements('estvoyage\phpTour2015\alcohol\provider')
 		;
 	}
 
-	function testAlcoholDrinkIsAskedByClient()
+	function testAlcoholIsAskedByAlcoholConsumer()
 	{
 		$this
 			->given(
-				$client = new mockOfPhpTour2015\barman\client,
+				$alcoholConsumer = new mockOfPhpTour2015\alcohol\consumer,
 				$dataConsumer = new mockOfData\consumer,
 				$this->newTestedInstance($dataConsumer)
 			)
 			->if(
-				$this->calling($client)->ageIsRequiredByBarman->doesNothing
+				$this->calling($alcoholConsumer)->ageIsRequiredByAlcoholProvider->doesNothing
 			)
 			->then
-				->object($this->testedInstance->alcoholDrinkIsAskedByClient($client))->isTestedInstance
-				->mock($client)
-					->receive('legalAgeToDrinkAlcoholIs')
-						->withArguments(new client\age(18))
+				->object($this->testedInstance->alcoholIsAskedByAlcoholConsumer($alcoholConsumer))->isTestedInstance
+				->mock($alcoholConsumer)
+					->receive('legalAgeToConsumeAlcoholIs')
+						->withArguments(new alcohol\consumer\age(18))
 							->once
 				->mock($dataConsumer)
 					->receive('newData')
@@ -48,27 +48,27 @@ class barman extends units\test
 							->once
 
 			->if(
-				$this->calling($client)->ageIsRequiredByBarman = function($barman) {
-					$barman->clientAgeIs(new client\age(17));
+				$this->calling($alcoholConsumer)->ageIsRequiredByAlcoholProvider = function($alcoholProvider) {
+					$alcoholProvider->ageOfAlcoholConsumerIs(new alcohol\consumer\age(17));
 				}
 			)
 			->then
-				->object($this->testedInstance->alcoholDrinkIsAskedByClient($client))->isTestedInstance
-				->mock($client)
-					->receive('legalAgeToDrinkAlcoholIs')
-						->withArguments(new client\age(18))
+				->object($this->testedInstance->alcoholIsAskedByAlcoholConsumer($alcoholConsumer))->isTestedInstance
+				->mock($alcoholConsumer)
+					->receive('legalAgeToConsumeAlcoholIs')
+						->withArguments(new alcohol\consumer\age(18))
 							->twice
 
 			->if(
-				$this->calling($client)->ageIsRequiredByBarman = function($barman) {
-					$barman->clientAgeIs(new client\age(18));
+				$this->calling($alcoholConsumer)->ageIsRequiredByAlcoholProvider = function($alcoholProvider) {
+					$alcoholProvider->ageOfAlcoholConsumerIs(new alcohol\consumer\age(18));
 				}
 			)
 			->then
-				->object($this->testedInstance->alcoholDrinkIsAskedByClient($client))->isTestedInstance
-				->mock($client)
-					->receive('newAlcoholDrink')
-						->withArguments(new alcohol\drink)
+				->object($this->testedInstance->alcoholIsAskedByAlcoholConsumer($alcoholConsumer))->isTestedInstance
+				->mock($alcoholConsumer)
+					->receive('newAlcoholContainer')
+						->withArguments(new france\barman\drink)
 							->once
 				->mock($dataConsumer)
 					->receive('newData')
@@ -76,24 +76,24 @@ class barman extends units\test
 							->once
 
 			->if(
-				$otherClient = new mockOfPhpTour2015\barman\client,
-				$this->calling($otherClient)->ageIsRequiredByBarman = function($barman) {
-					$barman->clientAgeIs(new client\age(17));
+				$otherAlcoholConsumer = new mockOfPhpTour2015\alcohol\consumer,
+				$this->calling($otherAlcoholConsumer)->ageIsRequiredByAlcoholProvider = function($alcoholProvider) {
+					$alcoholProvider->ageOfAlcoholConsumerIs(new alcohol\consumer\age(17));
 				},
-				$this->calling($client)->ageIsRequiredByBarman = function($barman) use ($otherClient) {
-					$barman->clientAgeIs(new client\age(18));
-					$barman->alcoholDrinkIsAskedByClient($otherClient);
+				$this->calling($alcoholConsumer)->ageIsRequiredByAlcoholProvider = function($alcoholProvider) use ($otherAlcoholConsumer) {
+					$alcoholProvider->ageOfAlcoholConsumerIs(new alcohol\consumer\age(18));
+					$alcoholProvider->alcoholIsAskedByAlcoholConsumer($otherAlcoholConsumer);
 				}
 			)
 			->then
-				->object($this->testedInstance->alcoholDrinkIsAskedByClient($client))->isTestedInstance
-				->mock($client)
-					->receive('newAlcoholDrink')
-						->withArguments(new alcohol\drink)
+				->object($this->testedInstance->alcoholIsAskedByAlcoholConsumer($alcoholConsumer))->isTestedInstance
+				->mock($alcoholConsumer)
+					->receive('newAlcoholContainer')
+						->withArguments(new france\barman\drink)
 							->twice
-				->mock($otherClient)
-					->receive('legalAgeToDrinkAlcoholIs')
-						->withArguments(new client\age(18))
+				->mock($otherAlcoholConsumer)
+					->receive('legalAgeToConsumeAlcoholIs')
+						->withArguments(new alcohol\consumer\age(18))
 							->once
 		;
 	}

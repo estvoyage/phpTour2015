@@ -11,4 +11,4 @@ use
 $console = new data\consumer\console\cli;
 
 (new france\barman(new decorator\prefix(new data\data('barman: '), $console)))
-	->alcoholDrinkIsAskedByClient(new france\teenager(new decorator\prefix(new data\data('teenager: '), $console)));
+	->alcoholIsAskedByAlcoholConsumer(new france\teenager(new decorator\prefix(new data\data('teenager: '), $console)));

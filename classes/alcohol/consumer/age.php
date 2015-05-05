@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\phpTour2015\barman\client;
+namespace estvoyage\phpTour2015\alcohol\consumer;
 
 use
 	estvoyage\value\integer

@@ -4,16 +4,14 @@ namespace estvoyage\phpTour2015\france;
 
 use
 	estvoyage\data,
-	estvoyage\phpTour2015,
-	estvoyage\phpTour2015\alcohol,
-	estvoyage\phpTour2015\barman\client
+	estvoyage\phpTour2015\alcohol
 ;
 
-class barman implements phpTour2015\barman
+class barman implements alcohol\provider
 {
 	private
 		$dataConsumer,
-		$serveClient
+		$serveAlcoholConsumer
 	;
 
 	private static
@@ -25,56 +23,54 @@ class barman implements phpTour2015\barman
 		$this->dataConsumer = $dataConsumer;
 	}
 
-	function alcoholDrinkIsAskedByClient(client $client)
+	function alcoholIsAskedByAlcoholConsumer(alcohol\consumer $alcoholConsumer)
 	{
-		(new self($this->dataConsumer))->serveClient($client);
+		(new self($this->dataConsumer))->serveAlcoholConsumer($alcoholConsumer);
 
 		return $this;
 	}
 
-	function clientAgeIs(client\age $age)
+	function ageOfAlcoholConsumerIs(alcohol\consumer\age $age)
 	{
-		$this->serveClient = $age->asInteger >= self::legalAge()->asInteger;
-
-		return $this;
+		$this->serveAlcoholConsumer = $age->asInteger >= self::legalAge()->asInteger;
 	}
 
-	private function serveClient(client $client)
+	private function serveAlcoholConsumer(alcohol\consumer $alcoholConsumer)
 	{
 		$this->dataConsumer->newData(new data\data('What is your age?'));
 
-		$client->ageIsRequiredByBarman($this);
+		$alcoholConsumer->ageIsRequiredByAlcoholProvider($this);
 
-		! $this->serveClient
+		! $this->serveAlcoholConsumer
 			?
-			$this->giveLegalAgeToClient($client)
+			$this->giveLegalAgeToAlcoholConsumer($alcoholConsumer)
 			:
-			$this->giveDrinkToClient($client)
+			$this->giveDrinkToAlcoholConsumer($alcoholConsumer)
 		;
 
 		return $this;
 	}
 
-	private function giveLegalAgeToClient(client $client)
+	private function giveLegalAgeToAlcoholConsumer(alcohol\consumer $alcoholConsumer)
 	{
 		$this->dataConsumer->newData(new data\data('I\'m sorry, the legal age to drink alcohol is ' . self::legalAge() . ' years old'));
 
-		$client->legalAgeToDrinkAlcoholIs(self::legalAge());
+		$alcoholConsumer->legalAgeToConsumeAlcoholIs(self::legalAge());
 
 		return $this;
 	}
 
-	private function giveDrinkToClient(client $client)
+	private function giveDrinkToAlcoholConsumer(alcohol\consumer $alcoholConsumer)
 	{
 		$this->dataConsumer->newData(new data\data('This is your drink!'));
 
-		$client->newAlcoholDrink(new alcohol\drink);
+		$alcoholConsumer->newAlcoholContainer(new barman\drink);
 
 		return $this;
 	}
 
 	private static function legalAge()
 	{
-		return self::$legalAge ?: (self::$legalAge = new client\age(18));
+		return self::$legalAge ?: (self::$legalAge = new alcohol\consumer\age(18));
 	}
 }

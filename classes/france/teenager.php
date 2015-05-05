@@ -4,10 +4,10 @@ namespace estvoyage\phpTour2015\france;
 
 use
 	estvoyage\data,
-	estvoyage\phpTour2015
+	estvoyage\phpTour2015\alcohol
 ;
 
-class teenager implements phpTour2015\barman\client
+class teenager implements alcohol\consumer
 {
 	private
 		$dataConsumer
@@ -18,23 +18,23 @@ class teenager implements phpTour2015\barman\client
 		$this->dataConsumer = $dataConsumer;
 	}
 
-	function ageIsRequiredByBarman(phpTour2015\barman $barman)
+	function ageIsRequiredByAlcoholProvider(alcohol\provider $alcoholProvider)
 	{
 		$this->dataConsumer->newData(new data\data('My age is 18 years old'));
 
-		$barman->clientAgeIs(new phpTour2015\barman\client\age(18));
+		$alcoholProvider->ageOfAlcoholConsumerIs(new alcohol\consumer\age(18));
 
 		return $this;
 	}
 
-	function legalAgeToDrinkAlcoholIs(phpTour2015\barman\client\age $age)
+	function legalAgeToConsumeAlcoholIs(alcohol\consumer\age $age)
 	{
 		$this->dataConsumer->newData(new data\data('Oh… really?'));
 
 		return $this;
 	}
 
-	function newAlcoholDrink(phpTour2015\alcohol\drink $drink)
+	function newAlcoholContainer(alcohol\container $alcoholContainer)
 	{
 		$this->dataConsumer->newData(new data\data('Thanks!'));
 

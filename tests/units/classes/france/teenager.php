@@ -8,6 +8,7 @@ use
 	estvoyage\phpTour2015\tests\units,
 	estvoyage\data,
 	estvoyage\phpTour2015,
+	estvoyage\phpTour2015\alcohol,
 	mock\estvoyage\data as mockOfData,
 	mock\estvoyage\phpTour2015 as mockOfPhpTour2015
 ;
@@ -17,25 +18,25 @@ class teenager extends units\test
 	function testClass()
 	{
 		$this->testedClass
-			->implements('estvoyage\phpTour2015\barman\client')
+			->implements('estvoyage\phpTour2015\alcohol\consumer')
 		;
 	}
 
-	function testAgeIsRequiredByBarman()
+	function testAgeIsRequiredByAlcoholProvider()
 	{
 		$this
 			->given(
 				$dataConsumer = new mockOfData\consumer,
-				$barman = new mockOfPhpTour2015\barman
+				$alcoholProvider = new mockOfPhpTour2015\alcohol\provider
 			)
 			->if(
 				$this->newTestedInstance($dataConsumer)
 			)
 			->then
-				->object($this->testedInstance->ageIsRequiredByBarman($barman))->isTestedInstance
-				->mock($barman)
-					->receive('clientAgeIs')
-						->withArguments(new phpTour2015\barman\client\age(18))
+				->object($this->testedInstance->ageIsRequiredByAlcoholProvider($alcoholProvider))->isTestedInstance
+				->mock($alcoholProvider)
+					->receive('ageOfAlcoholConsumerIs')
+						->withArguments(new alcohol\consumer\age(18))
 							->once
 				->mock($dataConsumer)
 					->receive('newData')
@@ -44,7 +45,7 @@ class teenager extends units\test
 		;
 	}
 
-	function testLegalAgeToDrinkAlcoholIs()
+	function testLegalAgeToConsumeAlcoholIs()
 	{
 		$this
 			->given(
@@ -54,7 +55,7 @@ class teenager extends units\test
 				$this->newTestedInstance($dataConsumer)
 			)
 			->then
-				->object($this->testedInstance->legalAgeToDrinkAlcoholIs(new phpTour2015\barman\client\age(18)))->isTestedInstance
+				->object($this->testedInstance->legalAgeToConsumeAlcoholIs(new alcohol\consumer\age(18)))->isTestedInstance
 				->mock($dataConsumer)
 					->receive('newData')
 						->withArguments(new data\data('Oh… really?'))
@@ -62,7 +63,7 @@ class teenager extends units\test
 		;
 	}
 
-	function testNewAlcoholDrink()
+	function testNewAlcoholContainer()
 	{
 		$this
 			->given(
@@ -72,7 +73,7 @@ class teenager extends units\test
 				$this->newTestedInstance($dataConsumer)
 			)
 			->then
-				->object($this->testedInstance->newAlcoholDrink(new phpTour2015\alcohol\drink))->isTestedInstance
+				->object($this->testedInstance->newAlcoholContainer(new mockOfPhpTour2015\alcohol\container))->isTestedInstance
 				->mock($dataConsumer)
 					->receive('newData')
 						->withArguments(new data\data('Thanks!'))

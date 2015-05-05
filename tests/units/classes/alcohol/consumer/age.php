@@ -1,6 +1,6 @@
 <?php
 
-namespace estvoyage\phpTour2015\tests\units\barman\client;
+namespace estvoyage\phpTour2015\tests\units\alcohol\consumer;
 
 require __DIR__. '/../../../runner.php';
 
