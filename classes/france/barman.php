@@ -32,7 +32,7 @@ class barman implements alcohol\provider
 
 	function ageOfAlcoholConsumerIs(alcohol\consumer\age $age)
 	{
-		$this->serveAlcoholConsumer = $age->asInteger >= self::legalAge()->asInteger;
+		$this->serveAlcoholConsumer = $age->isGreaterThanOrEqualTo(self::legalAge());
 	}
 
 	private function serveAlcoholConsumer(alcohol\consumer $alcoholConsumer)

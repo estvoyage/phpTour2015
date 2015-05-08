@@ -14,7 +14,35 @@ class age extends units\test
 	{
 		$this->testedClass
 			->isFinal
-			->extends('estvoyage\value\integer\unsigned')
+		;
+	}
+
+	function testIsGreaterThanOrEqualTo()
+	{
+		$this
+			->given(
+				$age = $this->newTestedInstance(0)
+			)
+			->if(
+				$this->newTestedInstance(0)
+			)
+			->then
+				->boolean($this->testedInstance->isGreaterThanOrEqualTo($age))->isTrue
+
+			->if(
+				$this->newTestedInstance(1)
+			)
+			->then
+				->boolean($this->testedInstance->isGreaterThanOrEqualTo($age))->isTrue
+
+			->given(
+				$age = $this->newTestedInstance(1)
+			)
+			->if(
+				$this->newTestedInstance(0)
+			)
+			->then
+				->boolean($this->testedInstance->isGreaterThanOrEqualTo($age))->isFalse
 		;
 	}
 }
