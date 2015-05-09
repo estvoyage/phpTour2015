@@ -17,7 +17,7 @@ final class age
 
 		if ($value < 0)
 		{
-			throw new \domainException('Age of alcohol consumer should be greater than 0');
+			throw new \domainException('Age of alcohol consumer should be greater than or equal to 0');
 		}
 
 		$this->value = $value;
@@ -31,5 +31,15 @@ final class age
 	function isGreaterThanOrEqualTo(self $age)
 	{
 		return $this->value >= $age->value;
+	}
+
+	function callableIsIfGreaterThanOrEqualTo(callable $callable, self $age)
+	{
+		if ($this->value >= $age->value)
+		{
+			$callable();
+		}
+
+		return $this;
 	}
 }
