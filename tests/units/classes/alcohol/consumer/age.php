@@ -46,7 +46,7 @@ class age extends units\test
 		;
 	}
 
-	function testCallableIsIfGreaterThanOrEqualTo()
+	function testExecuteIfGreaterOrEqualTo()
 	{
 		$this
 			->given(
@@ -58,7 +58,7 @@ class age extends units\test
 				$this->newTestedInstance(0)
 			)
 			->then
-				->object($this->testedInstance->callableIsIfGreaterThanOrEqualTo($callable, $age))->isTestedInstance
+				->object($this->testedInstance->executeIfGreaterOrEqualTo($callable, $age))->isTestedInstance
 				->boolean($call)->isTrue
 
 			->if(
@@ -66,7 +66,7 @@ class age extends units\test
 				$this->newTestedInstance(1)
 			)
 			->then
-				->object($this->testedInstance->callableIsIfGreaterThanOrEqualTo($callable, $age))->isTestedInstance
+				->object($this->testedInstance->executeIfGreaterOrEqualTo($callable, $age))->isTestedInstance
 				->boolean($call)->isTrue
 
 			->given(
@@ -77,7 +77,7 @@ class age extends units\test
 				$this->newTestedInstance(0)
 			)
 			->then
-				->object($this->testedInstance->callableIsIfGreaterThanOrEqualTo($callable, $age))->isTestedInstance
+				->object($this->testedInstance->executeIfGreaterOrEqualTo($callable, $age))->isTestedInstance
 				->boolean($call)->isFalse
 		;
 	}

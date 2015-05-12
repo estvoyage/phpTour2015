@@ -33,7 +33,7 @@ final class age
 		return $this->value >= $age->value;
 	}
 
-	function callableIsIfGreaterThanOrEqualTo(callable $callable, self $age)
+	function executeIfGreaterOrEqualTo(callable $callable, self $age)
 	{
 		if ($this->value >= $age->value)
 		{
